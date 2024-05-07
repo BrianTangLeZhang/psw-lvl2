@@ -23,7 +23,7 @@ export default function UpdateClass() {
   let classes = JSON.parse(localStorage.getItem("classes"));
   if (!classes) classes = [];
   const c = classes.find((c) => c.id === id);
-
+  const idx = classes.findIndex((c) => c.id === id);
   let studentsList = JSON.parse(localStorage.getItem("students"));
   if (!studentsList) studentsList = [];
   const nav = useNavigate();
@@ -47,15 +47,12 @@ export default function UpdateClass() {
   };
 
   const handlerSubmit = () => {
-    classes = [
+    classes[idx] = {
       ...classes,
-      {
-        id: nanoid(),
-        name: name,
-        description: description,
-        students: [...students],
-      },
-    ];
+      name: name,
+      description: description,
+      students: [...students],
+    };
     localStorage.setItem("classes", JSON.stringify(classes));
     alert("Class updated successfully");
     nav("/");

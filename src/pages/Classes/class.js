@@ -18,9 +18,6 @@ export default function ClassCard({ c }) {
           {c.name}
         </Typography>
         <Typography sx={{ mb: 1.5 }}>Description: {c.description}</Typography>
-        <Typography sx={{ mb: 1.5 }}>
-          Instructor: {c.instructor ? c.instructor : "-"}
-        </Typography>
         <Typography>Students: {c.students.length}</Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "end" }}>

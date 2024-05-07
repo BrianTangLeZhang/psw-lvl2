@@ -16,7 +16,6 @@ import { nanoid } from "nanoid";
 export default function AddClass() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [instructor, setInstructor] = useState("");
 
   const nav = useNavigate();
 
@@ -45,7 +44,6 @@ export default function AddClass() {
         id: nanoid(),
         name: name,
         description: description,
-        instructor: instructor,
         students: [...students],
       },
     ];
@@ -80,26 +78,17 @@ export default function AddClass() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <Typography fontWeight="bold">Instructor: </Typography>
-          <TextField
-            fullWidth
-            required
-            value={instructor}
-            onChange={(e) => setInstructor(e.target.value)}
-          />
           <Typography fontWeight="bold">Students: </Typography>
           <Select fullWidth>
             {studentsList.map((s) => (
-              <>
-                <MenuItem key={s.id} value={s.name}>
-                  {s.name}
-                  <Checkbox
-                    onChange={(e) => {
-                      handlerCheck(e.target.checked, s);
-                    }}
-                  />
-                </MenuItem>
-              </>
+              <MenuItem key={s.id} value={s.name}>
+                {s.name}
+                <Checkbox
+                  onChange={(e) => {
+                    handlerCheck(e.target.checked, s);
+                  }}
+                />
+              </MenuItem>
             ))}
           </Select>
           <Box sx={{ paddingTop: 3, display: "flex", justifyContent: "end" }}>
